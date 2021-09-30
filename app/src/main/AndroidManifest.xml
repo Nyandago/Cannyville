@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CannyVille">
         <activity
-            android:name=".`Sign Up`"
+            android:name=".Signup"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
