@@ -1,9 +1,11 @@
 package com.cannybits.cannyville
 
+import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -18,7 +20,8 @@ class Signup : AppCompatActivity() {
     private lateinit var signUpPassword: EditText
     private lateinit var signUp : Button
     private lateinit var userPhoto: ImageView
-    private val UPLOADIMAGE = 123
+    val UPLOADIMAGE = 123
+    val PICK_IMAGE_CODE = 255
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +70,23 @@ class Signup : AppCompatActivity() {
     }
 
     private fun loadImage(){
-        //TODO: load image from phone
+        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(intent, PICK_IMAGE_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if(requestCode==PICK_IMAGE_CODE && resultCode== RESULT_OK && data != null){
+            val selectedImage = data.data
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor = selectedImage?.let { contentResolver.query(it,filePathColumn,null,null,null) }
+            cursor?.moveToFirst()
+            val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
+            val picturePath = columnIndex?.let { cursor?.getString(it) }
+            cursor?.close()
+            userPhoto.setImageBitmap(BitmapFactory.decodeFile(picturePath))
+        }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun initView(){
