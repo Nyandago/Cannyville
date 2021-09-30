@@ -56,7 +56,7 @@ class Signup : AppCompatActivity() {
                 if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
                     loadImage()
                 } else{
-                    Toast.makeText(this,"Photo Storage Permissions Denied",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"Storage Permissions Denied",Toast.LENGTH_LONG).show()
                 }
             }
 
