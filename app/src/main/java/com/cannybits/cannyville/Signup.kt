@@ -3,6 +3,7 @@ package com.cannybits.cannyville
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -20,23 +21,29 @@ class Signup : AppCompatActivity() {
     private lateinit var signUpPassword: EditText
     private lateinit var signUp : Button
     private lateinit var userPhoto: ImageView
-    val UPLOADIMAGE = 123
-    val PICK_IMAGE_CODE = 255
+
+
+    private val pickImage = 100
+    private var imageUri : Uri? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
+        title = "Sign Up Page"
+
         initView()
 
         uploadPhoto.setOnClickListener {
-            checkPermission()
+            //checkPermission()
+            loadImage()
 
         }
     }
 
-    private fun checkPermission(){
+   /* private fun checkPermission(){
 
         if (ActivityCompat.checkSelfPermission(this,
             android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -67,26 +74,21 @@ class Signup : AppCompatActivity() {
         }
 
 
-    }
+    }  */
 
     private fun loadImage(){
-        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, PICK_IMAGE_CODE)
+       val gallery  = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        startActivityForResult(gallery, pickImage)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        if(requestCode==PICK_IMAGE_CODE && resultCode== RESULT_OK && data != null){
-            val selectedImage = data.data
-            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-            val cursor = selectedImage?.let { contentResolver.query(it,filePathColumn,null,null,null) }
-            cursor?.moveToFirst()
-            val columnIndex = cursor?.getColumnIndex(filePathColumn[0])
-            val picturePath = columnIndex?.let { cursor?.getString(it) }
-            cursor?.close()
-            userPhoto.setImageBitmap(BitmapFactory.decodeFile(picturePath))
-        }
         super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== RESULT_OK && requestCode == pickImage)
+        {
+            imageUri = data?.data
+            userPhoto.setImageURI(imageUri)
+        }
     }
 
     private fun initView(){
