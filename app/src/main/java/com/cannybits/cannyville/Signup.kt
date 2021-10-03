@@ -32,7 +32,7 @@ class Signup : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        title = "Sign Up Page"
+
 
         initView()
 
