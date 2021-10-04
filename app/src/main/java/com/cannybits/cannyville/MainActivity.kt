@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -55,12 +56,17 @@ class MainActivity : AppCompatActivity() {
         mAuth!!.createUserWithEmailAndPassword(email,password)
             .addOnCompleteListener() {
                     task ->
-                if(task.isSuccessful){
-                    Toast.makeText(this,"User Successfully Signed Up", Toast.LENGTH_LONG).show()
+                if(task.isSuccessful) {
+                    Toast.makeText(this, "User Successfully Signed Up", Toast.LENGTH_LONG).show()
+                    mAuth!!.currentUser?.let { saveImageToFirebase(it) }
                 } else {
                     Toast.makeText(this,"Failed To Sign Up The User", Toast.LENGTH_LONG).show()
                 }
             }
+    }
+
+    private fun saveImageToFirebase(currentUser: FirebaseUser){
+
     }
 
 
