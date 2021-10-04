@@ -11,10 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CannyVille">
-        <activity
-            android:name=".Signup"
-            android:label="Sign Up to CannyVille"
-            android:exported="true" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
