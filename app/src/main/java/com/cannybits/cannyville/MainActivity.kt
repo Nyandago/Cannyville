@@ -8,6 +8,8 @@ import android.provider.MediaStore
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -24,6 +26,8 @@ class MainActivity : AppCompatActivity() {
     private val pickImage = 100
     private var imageUri : Uri? = null
 
+    private var mAuth : FirebaseAuth? = null
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,14 +37,31 @@ class MainActivity : AppCompatActivity() {
 
 
         initView()
+        mAuth = FirebaseAuth.getInstance()
 
         uploadPhoto.setOnClickListener {
-
             loadImage()
+        }
 
+        signUp.setOnClickListener {
+            val userEmail = signUpEmail.text.toString()
+            val userPassword = signUpPassword.text.toString()
+
+            signUpUserToFirebase(userEmail, userPassword)
         }
     }
 
+    private fun signUpUserToFirebase(email: String, password: String){
+        mAuth!!.createUserWithEmailAndPassword(email,password)
+            .addOnCompleteListener() {
+                    task ->
+                if(task.isSuccessful){
+                    Toast.makeText(this,"User Successfully Signed Up", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this,"Failed To Sign Up The User", Toast.LENGTH_LONG).show()
+                }
+            }
+    }
 
 
     private fun loadImage(){
