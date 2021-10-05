@@ -105,13 +105,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun loadTweets(){
-        var currentUser =mAuth!!.currentUser
+    private fun loadTweets(){
+        val currentUser =mAuth!!.currentUser
 
         if(currentUser!=null) {
 
 
-            var intent = Intent(this, TweetsActivity::class.java)
+            val intent = Intent(this, TweetsActivity::class.java)
             intent.putExtra("email", currentUser.email)
             intent.putExtra("uid", currentUser.uid)
 
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun splitString(email: String): String{
+    private fun splitString(email: String): String{
         val split = email.split("@")
         return split[0]
     }
