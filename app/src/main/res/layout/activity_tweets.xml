@@ -5,4 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/canny_gradient"
-    tools:context=".TweetsActivity"/>
+    tools:context=".TweetsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"></LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
