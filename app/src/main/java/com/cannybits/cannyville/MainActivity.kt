@@ -96,10 +96,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,"Failed To upload the image",Toast.LENGTH_LONG).show()
         }
                  .addOnSuccessListener { taskSnapshot ->
-                     val DownloadURL= taskSnapshot.storage.downloadUrl.toString()!!
+                     val downloadUrl= taskSnapshot.storage.downloadUrl.toString()!!
 
                      myRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
-                     myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(DownloadURL)
+                     myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
                     loadTweets()
             }
 
