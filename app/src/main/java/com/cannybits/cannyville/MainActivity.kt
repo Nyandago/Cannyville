@@ -93,28 +93,22 @@ class MainActivity : AppCompatActivity() {
         val uploadTask = imageRef.putBytes(data)
 
         uploadTask.addOnFailureListener{
-            Toast.makeText(this,"Failed To upload the image",Toast.LENGTH_LONG).show()
+            Toast.makeText(this,"Failed to upload the image",Toast.LENGTH_LONG).show()
         }
                  .addOnSuccessListener { taskSnapshot ->
                      val downloadUrl= taskSnapshot.storage.downloadUrl.toString()!!
-
                      myRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
                      myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
                     loadTweets()
             }
-
     }
 
     private fun loadTweets(){
         val currentUser =mAuth!!.currentUser
-
         if(currentUser!=null) {
-
-
             val intent = Intent(this, TweetsActivity::class.java)
             intent.putExtra("email", currentUser.email)
             intent.putExtra("uid", currentUser.uid)
-
             startActivity(intent)
         }
     }
