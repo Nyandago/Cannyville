@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
     private var imageUri : Uri? = null
 
     private var mAuth : FirebaseAuth? = null
-    private var database= FirebaseDatabase.getInstance()
-    private var myRef=database.reference
+    private var mDatabase = FirebaseDatabase.getInstance()
+    private var mRef = mDatabase.reference
 
 
 
@@ -97,8 +97,8 @@ class MainActivity : AppCompatActivity() {
         }
                  .addOnSuccessListener { taskSnapshot ->
                      val downloadUrl= taskSnapshot.storage.downloadUrl.toString()!!
-                     myRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
-                     myRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
+                     mRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
+                     mRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
                     loadTweets()
             }
     }
