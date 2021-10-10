@@ -89,7 +89,7 @@
                 android:background="@color/white"
                 android:padding="10dp"
                 android:paddingEnd="1dp"
-                android:text="2015-12-11"
+                android:text="2021-10-11"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textSize="18sp" />
 
