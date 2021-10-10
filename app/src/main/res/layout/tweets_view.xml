@@ -75,7 +75,7 @@
                 android:gravity="left"
                 android:padding="10dp"
                 android:paddingRight="3dp"
-                android:text="User name"
+                android:text="Username"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="#1976D2"
                 android:textSize="18sp"
