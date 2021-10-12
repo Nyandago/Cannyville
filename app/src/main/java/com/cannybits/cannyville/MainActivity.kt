@@ -65,10 +65,10 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener() {
                     task ->
                 if(task.isSuccessful) {
-                    Toast.makeText(this, "User Successfully Signed Up", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "User Signed Up Successfully", Toast.LENGTH_LONG).show()
                     saveImageToFirebase()
                 } else {
-                    Toast.makeText(this,"Failed To Sign Up The User", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this,"User SignUp failed", Toast.LENGTH_LONG).show()
                 }
             }
     }
