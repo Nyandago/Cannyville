@@ -45,15 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    private fun loadTweets(){
-        val currentUser =mAuth!!.currentUser
-        if(currentUser!=null) {
-            val intent = Intent(this, TweetsActivity::class.java)
-            intent.putExtra("email", currentUser.email)
-            intent.putExtra("uid", currentUser.uid)
-            startActivity(intent)
-        }
-    }
+
 
 
 
