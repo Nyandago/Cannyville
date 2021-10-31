@@ -41,48 +41,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun signUpUserToFirebase(email: String, password: String){
-        mAuth!!.createUserWithEmailAndPassword(email,password)
-            .addOnCompleteListener() {
-                    task ->
-                if(task.isSuccessful) {
-                    Toast.makeText(this, "User Signed Up Successfully", Toast.LENGTH_LONG).show()
-                    saveImageToFirebase()
-                } else {
-                    Toast.makeText(this,"User SignUp failed", Toast.LENGTH_LONG).show()
-                }
-            }
-    }
 
-    private fun saveImageToFirebase(){
-        val currentUser = mAuth!!.currentUser
-        val email: String = currentUser!!.email.toString()
-        val storage = FirebaseStorage.getInstance()
-        val storageRef = storage.getReferenceFromUrl("gs://canny-social.appspot.com")
-        val dateFmt = SimpleDateFormat("ddMMyyHHmmss")
-        val dateObj = Date()
-        val imagePath = splitString(email) +"."+ dateFmt.format(dateObj) + ".jpg"
-        val imageRef = storageRef.child("images/"+imagePath)
-        userPhoto.isDrawingCacheEnabled = true
-        userPhoto.buildDrawingCache()
 
-        val drawable = userPhoto.drawable as BitmapDrawable
-        val bitmap = drawable.bitmap
-        val byteOs = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100, byteOs)
-        val data = byteOs.toByteArray()
-        val uploadTask = imageRef.putBytes(data)
 
-        uploadTask.addOnFailureListener{
-            Toast.makeText(this,"Failed to upload the image",Toast.LENGTH_LONG).show()
-        }
-                 .addOnSuccessListener { taskSnapshot ->
-                     val downloadUrl= taskSnapshot.storage.downloadUrl.toString()!!
-                     mRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
-                     mRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
-                    loadTweets()
-            }
-    }
 
     private fun loadTweets(){
         val currentUser =mAuth!!.currentUser
@@ -94,10 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun splitString(email: String): String{
-        val split = email.split("@")
-        return split[0]
-    }
+
 
 
 
