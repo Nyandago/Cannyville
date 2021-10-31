@@ -41,6 +41,16 @@ class Login : AppCompatActivity() {
         startActivityForResult(gallery, pickImage)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode== RESULT_OK && requestCode == pickImage)
+        {
+            imageUri = data?.data
+            userPhoto.setImageURI(imageUri)
+        }
+    }
+
     fun loginFunction(view: View){
 
     }
