@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_login.*
 
 class Login : AppCompatActivity() {
@@ -16,18 +18,34 @@ class Login : AppCompatActivity() {
     private lateinit var uploadPhoto: Button
     private lateinit var signUpEmail: EditText
     private lateinit var signUpPassword: EditText
-    private lateinit var login : Button
+    private lateinit var signUp : Button
     private lateinit var userPhoto: ImageView
 
 
     private val pickImage = 100
     private var imageUri : Uri? = null
 
+    private var mAuth : FirebaseAuth? = null
+    private var mDatabase = FirebaseDatabase.getInstance()
+    private var mRef = mDatabase.reference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         initView()
+        mAuth = FirebaseAuth.getInstance()
+
+        signUp.setOnClickListener {
+            val userEmail = signUpEmail.text.toString()
+            val userPassword = signUpPassword.text.toString()
+
+            signUpUserToFirebase(userEmail, userPassword)
+        }
+
+
+
+
 
         userPhoto.setOnClickListener(
          View.OnClickListener {
@@ -63,7 +81,7 @@ class Login : AppCompatActivity() {
 
     private fun initView(){
         uploadPhoto = btnUserImage
-        login = btnLogin
+        signUp = btnSignUp
         signUpEmail = etEmailSignup
         signUpPassword = etPasswordSignup
         userPhoto = imgUserPhoto

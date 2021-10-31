@@ -25,9 +25,7 @@ class MainActivity : AppCompatActivity() {
 /*
 
 
-    private var mAuth : FirebaseAuth? = null
-    private var mDatabase = FirebaseDatabase.getInstance()
-    private var mRef = mDatabase.reference
+
 
 
 
@@ -39,15 +37,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-        mAuth = FirebaseAuth.getInstance()
-
-        signUp.setOnClickListener {
-            val userEmail = signUpEmail.text.toString()
-            val userPassword = signUpPassword.text.toString()
-
-            signUpUserToFirebase(userEmail, userPassword)
-        }
 
 
     }
