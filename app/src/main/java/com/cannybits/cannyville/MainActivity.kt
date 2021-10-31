@@ -22,16 +22,8 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+/*
 
-    private lateinit var uploadPhoto: Button
-    private lateinit var signUpEmail: EditText
-    private lateinit var signUpPassword: EditText
-    private lateinit var signUp : Button
-    private lateinit var userPhoto: ImageView
-
-
-    private val pickImage = 100
-    private var imageUri : Uri? = null
 
     private var mAuth : FirebaseAuth? = null
     private var mDatabase = FirebaseDatabase.getInstance()
@@ -47,12 +39,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        initView()
-        mAuth = FirebaseAuth.getInstance()
 
-        uploadPhoto.setOnClickListener {
-            loadImage()
-        }
+        mAuth = FirebaseAuth.getInstance()
 
         signUp.setOnClickListener {
             val userEmail = signUpEmail.text.toString()
@@ -123,10 +111,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun loadImage(){
-        val gallery  = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-        startActivityForResult(gallery, pickImage)
-    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
@@ -138,11 +122,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initView(){
-        uploadPhoto = btnUserImage
-        signUp = btnSignUp
-        signUpEmail = etEmailSignup
-        signUpPassword = etPasswordSignup
-        userPhoto = imgUserPhoto
-    }
+    */
 }
