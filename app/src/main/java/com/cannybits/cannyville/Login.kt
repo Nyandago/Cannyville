@@ -22,7 +22,7 @@ import java.util.*
 
 class Login : AppCompatActivity() {
 
-    private lateinit var uploadPhoto: Button
+
     private lateinit var signUpEmail: EditText
     private lateinit var signUpPassword: EditText
     private lateinit var signUp : Button
@@ -56,11 +56,7 @@ class Login : AppCompatActivity() {
              loadImage()
         })
 
-        uploadPhoto.setOnClickListener(
-            View.OnClickListener {
-                loadImage()
-            }
-        )
+
     }
 
     private fun signUpUserToFirebase(email: String, password: String){
@@ -143,7 +139,6 @@ class Login : AppCompatActivity() {
     }
 
     private fun initView(){
-        uploadPhoto = btnUserImage
         signUp = btnSignUp
         signUpEmail = etEmailSignup
         signUpPassword = etPasswordSignup
