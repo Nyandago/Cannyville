@@ -33,6 +33,12 @@ class Login : AppCompatActivity() {
          View.OnClickListener {
              loadImage()
         })
+
+        uploadPhoto.setOnClickListener(
+            View.OnClickListener {
+                loadImage()
+            }
+        )
     }
 
 
