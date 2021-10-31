@@ -102,7 +102,7 @@ class Login : AppCompatActivity() {
                 val downloadUrl= taskSnapshot.storage.downloadUrl.toString()!!
                 mRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
                 mRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
-
+                loadTweets()
             }
     }
 
@@ -125,6 +125,16 @@ class Login : AppCompatActivity() {
     private fun splitString(email: String): String{
         val split = email.split("@")
         return split[0]
+    }
+
+    private fun loadTweets(){
+        val currentUser =mAuth!!.currentUser
+        if(currentUser!=null) {
+            val intent = Intent(this, TweetsActivity::class.java)
+            intent.putExtra("email", currentUser.email)
+            intent.putExtra("uid", currentUser.uid)
+            startActivity(intent)
+        }
     }
 
     private fun initView(){
