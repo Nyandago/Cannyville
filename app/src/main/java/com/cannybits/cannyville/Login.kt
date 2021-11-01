@@ -19,15 +19,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlinx.android.synthetic.main.activity_tweets.*
 
 class Login : AppCompatActivity() {
-
 
     private lateinit var signUpEmail: EditText
     private lateinit var signUpPassword: EditText
     private lateinit var signUp : Button
     private lateinit var userPhoto: ImageView
-
 
     private val pickImage = 100
     private var imageUri : Uri? = null
@@ -55,6 +54,7 @@ class Login : AppCompatActivity() {
          View.OnClickListener {
              loadImage()
         })
+
 
 
     }
@@ -129,7 +129,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun loadTweets(){
-        val currentUser =mAuth!!.currentUser
+        val currentUser = mAuth!!.currentUser
         if(currentUser!=null) {
             val intent = Intent(this, TweetsActivity::class.java)
             intent.putExtra("email", currentUser.email)
