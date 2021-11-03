@@ -105,9 +105,12 @@ class MainActivity : AppCompatActivity() {
 
                 myView.iv_post.setOnClickListener(
                     View.OnClickListener {
-                       mRef.child("posts").push().child("UserUID").setValue(userUID)
-                       mRef.child("posts").push().child("text").setValue(myView.etPost.text.toString())
-                       mRef.child("posts").push().child("postImage").setValue(downloadUrl)
+                       mRef.child("posts").push().setValue(
+                           PostInfo(myView.etPost.text.toString(),
+                           userUID!!,
+                           downloadUrl!!))
+
+                myView.etPost.setText("")
                     })
 
                 myView
