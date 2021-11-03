@@ -7,4 +7,24 @@
     android:background="@drawable/canny_gradient"
     tools:context=".MainActivity">
 
+    <ListView
+        android:id="@+id/lvTweets"
+        android:layout_width="400dp"
+        android:layout_height="521dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="406dp"
+        android:layout_height="74dp"
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvTweets"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

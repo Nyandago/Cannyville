@@ -1,16 +1,20 @@
 package com.cannybits.cannyville
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_tweets.*
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var logOut: Button
 
     private var tweetList: ArrayList<TweetTicket> = ArrayList()
     private var adapter:MyTweetAdapter?=null
@@ -18,6 +22,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        logOut = btnLogOut
+
+        logOut.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)
+        }
 
         //Dummy Data
         tweetList.add(TweetTicket("tweetId", "tweetText", "tweetImageUrl", "personUID"))
