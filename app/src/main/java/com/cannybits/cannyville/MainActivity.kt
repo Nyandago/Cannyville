@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Dummy Data
-        tweetList.add(TweetTicket("tweetId", "tweetText", "tweetImageUrl", "personUID"))
-        tweetList.add(TweetTicket("000", "hello there!", "tweetImageUrl", "canny"))
-        tweetList.add(TweetTicket("123", "Hakuna Matata!", "myImageUrl", "add"))
+        tweetList.add(TweetTicket("tweetId", "tweetText", "tweetImageUrl", "add"))
+        tweetList.add(TweetTicket("000", "hello there!", "tweetImageUrl", "nyati"))
+        tweetList.add(TweetTicket("123", "Hakuna Matata!", "myImageUrl", "kenge"))
 
         adapter = MyTweetAdapter(this,tweetList)
         lvTweets.adapter=adapter
