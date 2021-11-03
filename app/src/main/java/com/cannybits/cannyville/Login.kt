@@ -66,6 +66,7 @@ class Login : AppCompatActivity() {
                 if(task.isSuccessful) {
                     Toast.makeText(this, "User Signed Up Successfully", Toast.LENGTH_LONG).show()
                     saveImageToFirebase()
+                    loadTweets()
                 } else {
                     Toast.makeText(this,"User SignUp failed", Toast.LENGTH_LONG).show()
                 }
@@ -98,7 +99,6 @@ class Login : AppCompatActivity() {
                 val downloadUrl= taskSnapshot.storage.downloadUrl.toString()!!
                 mRef.child("Users").child(currentUser.uid).child("email").setValue(currentUser.email)
                 mRef.child("Users").child(currentUser.uid).child("ProfileImage").setValue(downloadUrl)
-                loadTweets()
             }
     }
 
