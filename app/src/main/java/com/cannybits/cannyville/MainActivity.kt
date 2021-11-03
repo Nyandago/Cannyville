@@ -1,24 +1,12 @@
 package com.cannybits.cannyville
 
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_tweets.*
-import kotlinx.android.synthetic.main.add_tweet.view.*
-import java.io.ByteArrayOutputStream
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -42,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     inner class  MyTweetAdapter: BaseAdapter {
 
-        var tweetsAdapter=ArrayList<TweetTicket>()
+        private var tweetsAdapter=ArrayList<TweetTicket>()
         var context: Context?=null
 
         constructor(context: Context, tweetsAdapter:ArrayList<TweetTicket>):super(){
@@ -65,21 +53,15 @@ class MainActivity : AppCompatActivity() {
 
         override fun getView(p0: Int, p1: View?, p2: ViewGroup?): View {
 
-            var mytweet=tweetsAdapter[p0]
+            val myTweet = tweetsAdapter[p0]
 
-            if(mytweet.tweetPersonUID.equals("add")){
+            return if(myTweet.tweetPersonUID.equals("add")) {
                 //Load add tweet ticket
+                layoutInflater.inflate(R.layout.add_tweet, null)
+            } else{
+                //Load Tweet View
+                layoutInflater.inflate(R.layout.tweets_view, null)
             }
-
-
-
-            var myView = layoutInflater.inflate(R.layout.add_tweet, null)
-
-            myView.iv_attach.setOnClickListener(View.OnClickListener {
-                //  loadImage()
-
-            })
-            return myView
         }
     }
 
