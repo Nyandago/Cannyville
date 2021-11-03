@@ -80,7 +80,7 @@ class Login : AppCompatActivity() {
         val storageRef = storage.getReferenceFromUrl("gs://canny-social.appspot.com")
         val dateFmt = SimpleDateFormat("ddMMyyHHmmss")
         val dateObj = Date()
-        val imagePath = splitString(email) +"."+ dateFmt.format(dateObj) + ".jpg"
+        val imagePath = splitString(email) +"_"+ dateFmt.format(dateObj) + ".jpg"
         val imageRef = storageRef.child("images/"+imagePath)
         userPhoto.isDrawingCacheEnabled = true
         userPhoto.buildDrawingCache()
