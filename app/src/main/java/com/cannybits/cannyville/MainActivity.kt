@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,9 +14,7 @@ import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_login.view.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.add_tweet.*
 import kotlinx.android.synthetic.main.add_tweet.view.*
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
@@ -144,7 +141,7 @@ class MainActivity : AppCompatActivity() {
         val storageRef = storage.getReferenceFromUrl("gs://canny-social.appspot.com")
         val dateFmt = SimpleDateFormat("ddMMyyHHmmss")
         val dateObj = Date()
-        val imagePath = splitString(myEmail!!) +"_"+ dateFmt.format(dateObj) + ".jpg"
+        val imagePath = splitEmailString(myEmail!!) +"_"+ dateFmt.format(dateObj) + ".jpg"
         val imageRef = storageRef.child("imagePost/"+imagePath)
 
         val byteOs = ByteArrayOutputStream()
@@ -161,7 +158,7 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-    private fun splitString(email: String): String{
+    private fun splitEmailString(email: String): String{
         val split = email.split("@")
         return split[0]
     }
